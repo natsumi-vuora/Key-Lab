@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Keyboard, { rangeFor } from '../components/Keyboard.jsx';
 import ChordCard from '../components/ChordCard.jsx';
 import { KeySelect, Seg, LabelToggle } from '../components/Widgets.jsx';
-import { COMMON, searchChords, voicingOf, inversionCount, shell, marksFor, typeZh } from '../lib/chordbook.js';
+import { COMMON, searchChords, voicingOf, inversionCount, shell, upperTriad, marksFor, typeZh } from '../lib/chordbook.js';
 import { parseChord, pretty, diatonic, KEYS } from '../lib/theory.js';
 import { playNotes, ensureAudio } from '../lib/audio.js';
 import { rememberPage } from '../lib/store.js';
@@ -17,6 +17,7 @@ function Detail({ name }) {
   if (!info) return <p className="card">找不到「{name}」這個和弦。試試 F#m7、sus4、大七，或用音名 C E G 反查。</p>;
   const n = inversionCount(name);
   const opts = INV.slice(0, n).map((t, i) => [`inv${i}`, t]);
+  if (upperTriad(name)) opts.push(['upper', '3 度上的三和弦']);
   if (shell(name)) opts.push(['shell', 'Shell']);
   opts.push(['open', '開放排列']);
   const v = voicingOf(name, kind) || voicingOf(name, 'inv0');

@@ -7,6 +7,7 @@ import ChordBook from './pages/ChordBook.jsx';
 import Backing from './pages/Backing.jsx';
 import DronePage from './pages/DronePage.jsx';
 import Quiz from './pages/Quiz.jsx';
+import Drills from './pages/Drills.jsx';
 import Dock from './components/Dock.jsx';
 import { ensureAudio, playNote } from './lib/audio.js';
 
@@ -64,6 +65,7 @@ const NAV = [
   { to: '', label: '首頁' },
   ...UNITS.map((u) => ({ to: `unit/${u.id}`, label: u.title, no: u.no })),
   { to: 'plan', label: '課表' },
+  { to: 'drills', label: '基本功' },
   { to: 'chords', label: '和弦表' },
   { to: 'backing', label: '配樂' },
   { to: 'drone', label: 'Drone' },
@@ -82,6 +84,7 @@ export default function App() {
   else if (head === 'backing') page = <Backing id={arg} />;
   else if (head === 'drone') page = <DronePage arg={arg} />;
   else if (head === 'quiz') page = <Quiz arg={arg} />;
+  else if (head === 'drills') page = <Drills arg={arg} />;
   else page = <Home />;
   const active = head === 'unit' ? `unit/${arg}` : head || '';
 

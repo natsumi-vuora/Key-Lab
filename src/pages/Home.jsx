@@ -17,6 +17,7 @@ const MAP = [
   {
     group: '練',
     items: [
+      { to: 'drills', title: '基本功', text: '節拍閃卡：順階換算、七和弦看到就彈、ii–V–I 繞調' },
       { to: 'backing', title: '配樂', text: `${KEY_LAB.progressions.length} 段進行、${KEY_LAB.patterns.length} 種節奏，鍵盤示範用最近轉位` },
       { to: 'drone', title: 'Drone', text: '任一根音持續響，鍵盤上標調式音階' },
       { to: 'quiz', title: '測驗', text: '在鍵盤上點音名、和弦內音，可以只出黑鍵' },

@@ -2,6 +2,7 @@
 import { KEY_LAB } from '../src/data/keys.js';
 import { parseChord, chroma } from '../src/lib/theory.js';
 import { parseNotes, voiceProgression } from '../src/lib/chordbook.js';
+import { PRESETS } from '../src/lib/drills.js';
 
 let errors = 0;
 let checked = 0;
@@ -75,6 +76,8 @@ for (const w of KEY_LAB.plan) for (const it of w.items) {
   planIds.add(it.id);
   const m = /^backing\/(.+)$/.exec(it.to || '');
   if (m && !ids.has(m[1])) fail(`課表 ${it.id}`, `連到不存在的配樂 ${m[1]}`);
+  const d = /^drills\/(.+)$/.exec(it.to || '');
+  if (d && !PRESETS[d[1]]) fail(`課表 ${it.id}`, `連到不存在的基本功預設 ${d[1]}`);
   const u = /^unit\/(.+)$/.exec(it.to || '');
   if (u && !KEY_LAB.units.some((x) => x.id === u[1])) fail(`課表 ${it.id}`, `連到不存在的單元 ${u[1]}`);
 }

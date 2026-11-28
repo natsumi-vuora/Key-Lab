@@ -1264,3 +1264,145 @@ a.chord-name:hover {
     padding: 14px;
   }
 }
+
+/* ---------- 基本功 ---------- */
+.teach summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+.teach[open] summary {
+  margin-bottom: 10px;
+}
+.jumps {
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 6px 0 10px;
+}
+.jumps td {
+  padding: 5px 14px 5px 0;
+  border-bottom: 1px solid var(--line);
+}
+.jumps td:first-child {
+  color: var(--pink);
+  white-space: nowrap;
+}
+.drill-settings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px 20px;
+}
+.stage {
+  border-color: rgba(139, 108, 255, 0.4);
+}
+.stage.is-running {
+  box-shadow: 0 0 0 1px var(--violet), 0 10px 40px rgba(139, 108, 255, 0.18);
+}
+.stage-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 14px;
+  align-items: end;
+}
+.stage-now small,
+.stage-next small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.stage-prompt {
+  display: block;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: clamp(3.2rem, 14vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.stage-next {
+  text-align: right;
+  opacity: 0.75;
+  border-left: 1px solid var(--line);
+  padding-left: 14px;
+}
+.stage-next b {
+  display: block;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  line-height: 1.15;
+}
+.stage-steps {
+  display: inline-flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.stage-steps i {
+  width: 22px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--surface-2);
+}
+.stage-steps i.is-on {
+  background: var(--pink);
+}
+.beat-dots.big {
+  margin: 16px 0;
+}
+.beat-dots.big i {
+  width: 20px;
+  height: 20px;
+}
+.beat-dots i.is-past {
+  background: rgba(255, 142, 198, 0.35);
+}
+.stage-controls {
+  margin-bottom: 12px;
+}
+.btn-slow {
+  border-color: rgba(255, 107, 125, 0.6);
+  color: #ffb1bb;
+}
+.answer {
+  min-height: 3em;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+.answer p b {
+  font-size: 1.3rem;
+}
+.heat-wrap {
+  overflow-x: auto;
+  margin: 8px 0 12px;
+}
+.heat {
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  min-width: 320px;
+}
+.heat th,
+.heat td {
+  padding: 3px 8px;
+  text-align: center;
+  border: 1px solid var(--line);
+}
+.heat th {
+  color: var(--muted);
+  font-weight: 500;
+}
+.slow-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding-left: 1.2em;
+}
+@media (max-width: 560px) {
+  .stage-top {
+    grid-template-columns: 1fr;
+  }
+  .stage-next {
+    text-align: left;
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 8px;
+  }
+}

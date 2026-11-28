@@ -1,5 +1,6 @@
 // 狀態與 localStorage：偏好設定、課表打勾、測驗紀錄、上次看到哪一課。可匯出匯入。
 import { useSyncExternalStore } from 'react';
+import { DEFAULT_DRILL } from './drills.js';
 
 const KEY = 'keylab:v1';
 
@@ -16,6 +17,7 @@ export const DEFAULTS = {
   drone: { root: 'D', mode: 'major', fifth: true },
   daily: { date: '', done: false },
   backing: { id: 'l-1', mode: 'close', transpose: 0, style: null, bpm: null },
+  drills: { ...DEFAULT_DRILL, slow: {} }, // 基本功設定；slow = { 卡片 id: 按「太慢」的次數 }
 };
 
 function load() {

@@ -331,6 +331,10 @@ function onStep(time) {
   if (S.metro && s % m.beat === 0) {
     const accent = m.accent.includes(s);
     E.click.triggerAttackRelease(accent ? 1760 : 1175, 0.03, time, accent ? 1 : 0.6);
+    if (beatListeners.size) {
+      const b = Math.floor(s / m.beat);
+      Tone.getDraw().schedule(() => beatListeners.forEach((fn) => fn(b, accent)), time);
+    }
   }
 
   if (S.playing && current) {
@@ -444,6 +448,12 @@ export function stopBacking() {
   stopKeys();
   maybeStopTransport();
   emit();
+}
+/** 節拍器每一拍的回呼（基本功的節拍閃卡用）：fn(拍子序號, 是否重拍) */
+const beatListeners = new Set();
+export function onBeat(fn) {
+  beatListeners.add(fn);
+  return () => beatListeners.delete(fn);
 }
 export async function toggleMetronome(on = !S.metro) {
   await ensureAudio();

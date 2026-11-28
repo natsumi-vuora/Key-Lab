@@ -103,11 +103,55 @@ export function openVoicing(name) {
   return { name, kind: 'open', label: '開放排列', left, right, tip: '左手根音與 5 度張開，右手 3、7、9 疊在上面，聲音更寬' };
 }
 
+const TRIAD_SUFFIX = { '4,7': '', '3,7': 'm', '3,6': 'dim', '4,8': 'aug' };
+/**
+ * 七和弦「3 度上的三和弦」：左手根音，右手彈從 3 度開始的三和弦（3–5–7）。
+ * maj7 → 3 度上的小三、m7 → 大三、7 → 減三、m7♭5 → 小三。
+ * prev：上一個右手排法，有的話挑最近的轉位
+ */
+export function upperTriadName(name) {
+  const info = parseChord(name);
+  if (!info) return null;
+  const t = findLabel(info, (l) => l === '3' || l === '♭3');
+  const f = findLabel(info, (l) => /^[♭♯]?5$/.test(l));
+  const s = findLabel(info, (l) => l === '7' || l === '♭7');
+  if (!t || !f || !s) return null;
+  const c = chroma(t + '4');
+  const key = `${(chroma(f + '4') - c + 12) % 12},${(chroma(s + '4') - c + 12) % 12}`;
+  const suffix = TRIAD_SUFFIX[key];
+  return suffix === undefined ? null : { triad: t + suffix, pcs: [t, f, s] };
+}
+export function upperTriad(name, prev) {
+  const info = parseChord(name);
+  const up = upperTriadName(name);
+  if (!info || !up) return null;
+  let right;
+  if (prev && prev.length) {
+    const list = [0, 1, 2].flatMap((r) => {
+      const order = rotate(up.pcs, r);
+      const out = [];
+      for (let lo = 52; lo <= 70; lo += 1) if (chroma(order[0] + '4') === ((lo % 12) + 12) % 12) out.push(stackUp(order, lo));
+      return out;
+    });
+    right = list.reduce((best, v) => (moveCost(prev, v) + 0.25 * Math.abs(mean(v) - CENTER) < moveCost(prev, best) + 0.25 * Math.abs(mean(best) - CENTER) ? v : best));
+  } else right = stackUp(up.pcs, 53);
+  return {
+    name,
+    kind: 'upper',
+    label: '3 度上的三和弦',
+    left: [leftRoot(info)],
+    right,
+    triad: up.triad,
+    tip: `左手 ${info.root}，右手彈 ${up.triad.replace('dim', '°')} 三和弦`,
+  };
+}
+
 /** 依 kind 取一個排法 */
 export function voicingOf(name, kind = 'inv0') {
   if (kind.startsWith('inv')) return inversion(name, Number(kind.slice(3)) || 0);
   if (kind === 'shell') return shell(name);
   if (kind === 'open') return openVoicing(name);
+  if (kind === 'upper') return upperTriad(name);
   return inversion(name, 0);
 }
 

@@ -163,7 +163,7 @@ export const KEY_LAB = {
       gain: '同一個進行聽起來更柔、更有層次',
       intro: [
         '在順階三和弦上再疊一個三度，就得到順階七和弦。你已經知道 maj7、m7、7、m7♭5 是什麼，這一單元處理的是手：四個音怎麼排、哪些音可以省。',
-        '兩個方向：一是只彈最重要的 3 度與 7 度（shell voicing），左手彈根音；二是把 7 度加進 01 學的三和弦轉位，一樣用最近連接。',
+        '三個方向：一是左手根音、右手彈「3 度上的三和弦」，用你最熟的三和弦直接變出七和弦，看到名稱就能彈；二是只彈最重要的 3 度與 7 度（shell voicing）；三是把 7 度加進 01 學的三和弦轉位，一樣用最近連接。',
       ],
       sections: [
         {
@@ -173,6 +173,34 @@ export const KEY_LAB = {
             '整個大調只有一個屬七和弦（V7），它是最想「回家」的和弦。',
           ],
           widget: 'diatonic7',
+        },
+        {
+          title: '看到就彈：右手彈「3 度上的三和弦」',
+          body: [
+            '你習慣左手根音、右手三和弦，七和弦可以直接沿用：左手彈根音，右手彈從 3 度開始的三和弦（3、5、7 度）。四個音一個不少，右手還是你秒按的三和弦，不用去算 7 度在哪。',
+            '規則只有一句：大三度上面放小三和弦、小三度上面放大三和弦；屬七是例外，放減三和弦。所以 Cmaj7 = C ＋ Em、Cm7 = C ＋ E♭、C7 = C ＋ E°、Cm7♭5 = C ＋ E♭m。',
+            '看到 Dm7 就想「D 加 F」，看到 G7 就想「G 加 B°」，看到 Fmaj7 就想「F 加 Am」。先一個根音一個根音把四種彈過，再到基本功頁用閃卡練到不用想。',
+          ],
+          chords: [
+            { id: 'Cmaj7-up', name: 'Cmaj7', label: '右手 Em', left: 'C3', right: 'E4 G4 B4', tip: '3 度 E 上面放小三和弦' },
+            { id: 'Cm7-up', name: 'Cm7', label: '右手 E♭', left: 'C3', right: 'Eb4 G4 Bb4', tip: '3 度 E♭ 上面放大三和弦' },
+            { id: 'C7-up', name: 'C7', label: '右手 E°', left: 'C3', right: 'E4 G4 Bb4', tip: '屬七例外：放減三和弦' },
+            { id: 'Cm7b5-up', name: 'Cm7b5', label: '右手 E♭m', left: 'C3', right: 'Eb4 Gb4 Bb4', tip: '3 度 E♭ 上面放小三和弦' },
+            { id: 'Dm7-up', name: 'Dm7', label: '右手 F', left: 'D3', right: 'F4 A4 C5' },
+            { id: 'G7-up', name: 'G7', label: '右手 B°', left: 'G2', right: 'B3 D4 F4' },
+          ],
+          example: {
+            id: '2-3',
+            title: '譜例 2-3：ii–V–I，右手 3 度上的三和弦（最近轉位）',
+            bpm: 72,
+            bars: [
+              { name: 'Dm7', label: 'Dm7（F）', left: 'D3', right: 'F4 A4 C5' },
+              { name: 'G7', label: 'G7（B°）', left: 'G2', right: 'D4 F4 B4' },
+              { name: 'Cmaj7', label: 'Cmaj7（Em）', left: 'C3', right: 'E4 G4 B4' },
+              { name: 'Cmaj7', label: 'Cmaj7（Em）', left: 'C3', right: 'E4 G4 B4' },
+            ],
+          },
+          link: { to: 'drills/seventh-white', text: '用閃卡練七和弦看到就彈' },
         },
         {
           title: 'Shell voicing：只彈 3 度和 7 度',
@@ -210,6 +238,7 @@ export const KEY_LAB = {
           body: [
             'G7 的 3 度（B）和 7 度（F）相差三個全音，這個音程很不穩定，聽起來「想走」。B 想往上半音到 C，F 想往下半音到 E——剛好落在 C 和弦上。',
             '用 shell 彈 Dm7 – G7 – Cmaj7，每次換和弦只有一個音走半音：Dm7（F C）→ G7（F B）是 C 往下到 B；G7（F B）→ Cmaj7（E B）是 F 往下到 E。另一個音不動。',
+            '這是所有「往下五度」的和弦連接共用的動作：上一個和弦的 3 度不動，變成下一個的 7 度；上一個的 7 度往下一步，變成下一個的 3 度。歌裡的 vi–ii–V–I、iii–vi–ii–V 全都是這個動作重複，練熟一次，換和弦就不是「重新組一個和弦」，而是「一根手指往下滑」。',
           ],
           example: {
             id: '2-2',
@@ -222,7 +251,7 @@ export const KEY_LAB = {
               { name: 'Cmaj7', left: 'C3', right: 'E4 B4' },
             ],
           },
-          link: { to: 'backing/j-1', text: '跟著配樂彈 ii – V – I' },
+          link: { to: 'drills/iivi', text: '用節拍閃卡練 ii – V – I 繞 12 個調' },
         },
       ],
     },
@@ -423,6 +452,7 @@ export const KEY_LAB = {
         { id: 'w1-g', text: 'G 大調順階三和弦上行下行，節拍器 60', to: 'chords/key/G' },
         { id: 'w1-f', text: 'F 大調順階三和弦上行下行，節拍器 60', to: 'chords/key/F' },
         { id: 'w1-root', text: '測驗「順階和弦的根音」連續答對 10 題', to: 'quiz/diatonic' },
+        { id: 'w1-d45', text: '基本功・順階換算「IV 與 V」：12 個調，每張 4 拍、♩=60，一輪不按「太慢了」', to: 'drills/degree-45' },
       ],
     },
     {
@@ -433,6 +463,8 @@ export const KEY_LAB = {
         { id: 'w2-11', text: '譜例 1-1 跟著播放彈三次', to: 'unit/inversions' },
         { id: 'w2-cgdf', text: 'C、G、D、F 三個轉位上行下行，節拍器 70', to: 'unit/inversions' },
         { id: 'w2-black', text: 'E♭、A♭、B♭ 三個轉位各彈一次（看總覽）', to: 'unit/inversions' },
+        { id: 'w2-d62', text: '基本功・順階換算「vi 與 ii」：12 個調，每張 4 拍', to: 'drills/degree-62' },
+        { id: 'w2-prog', text: '基本功・羅馬數字進行 I–V–vi–IV：從 G 開始每 2 輪換調，彈完 6 個調', to: 'drills/prog' },
       ],
     },
     {
@@ -444,6 +476,7 @@ export const KEY_LAB = {
         { id: 'w3-12', text: '譜例 1-2 跟著播放彈三次', to: 'unit/inversions' },
         { id: 'w3-back', text: '配樂「C – Am – F – G」彈完三輪，右手保持在同一個八度內', to: 'backing/l-1' },
         { id: 'w3-pop', text: '配樂「G – D – Em – C」用最近轉位彈三輪', to: 'backing/pop-g' },
+        { id: 'w3-dall', text: '基本功・順階換算「全部」：12 個調，每張 2 拍', to: 'drills/degree-all' },
       ],
     },
     {
@@ -454,6 +487,8 @@ export const KEY_LAB = {
         { id: 'w4-quiz', text: '測驗：找和弦的 3 度與 7 度，連續答對 10 題', to: 'quiz/tone-37' },
         { id: 'w4-21', text: '譜例 2-1 跟著播放彈三次', to: 'unit/sevenths' },
         { id: 'w4-dia', text: 'C 大調七個七和弦上行下行（不看圖）', to: 'unit/sevenths' },
+        { id: 'w4-up', text: 'C、D、F、G 四個根音，各彈 maj7 → 7 → m7 → m7♭5（右手 3 度上的三和弦）', to: 'unit/sevenths' },
+        { id: 'w4-flash', text: '基本功・七和弦閃卡：只有白鍵根音，每張 4 拍，20 張內按「太慢了」不超過 2 次', to: 'drills/seventh-white' },
       ],
     },
     {
@@ -464,6 +499,8 @@ export const KEY_LAB = {
         { id: 'w5-22', text: '譜例 2-2 跟著播放彈三次', to: 'unit/sevenths' },
         { id: 'w5-keys', text: 'F 大調（Gm7 – C7 – Fmaj7）、G 大調（Am7 – D7 – Gmaj7）shell 各彈五次', to: 'chords/Gm7' },
         { id: 'w5-back', text: '配樂「Am7 – Dm7 – G7 – Cmaj7」只彈 shell', to: 'backing/j-2' },
+        { id: 'w5-iivi', text: '基本功・ii–V–I 繞 12 個調（shell），每張 4 拍', to: 'drills/iivi' },
+        { id: 'w5-flash', text: '基本功・七和弦閃卡：12 個根音，每張 4 拍', to: 'drills/seventh-all' },
       ],
     },
     {
@@ -474,6 +511,7 @@ export const KEY_LAB = {
         { id: 'w6-32', text: '譜例 3-2 跟著播放彈三次', to: 'unit/colors' },
         { id: 'w6-color', text: '配樂 I–V–vi–IV：每個和弦都加一個色彩音（sus2、sus4 或 add9）', to: 'backing/pop-1564' },
         { id: 'w6-three', text: '同一段 I–V–vi–IV 彈三輪：原本、全部 sus2、全部 add9', to: 'backing/pop-1564' },
+        { id: 'w6-d7', text: '基本功・順階換算（七和弦）：12 個調，每張 4 拍', to: 'drills/degree-7' },
       ],
     },
     {
@@ -484,6 +522,7 @@ export const KEY_LAB = {
         { id: 'w7-31', text: '譜例 3-1 跟著播放彈三次', to: 'unit/colors' },
         { id: 'w7-open', text: 'Cmaj9、Fmaj9、Am9、Dm9 開放排列各彈五次', to: 'chords/Dm9' },
         { id: 'w7-back', text: '配樂「Fmaj7 – Cmaj7 – Am7 – Em7」開放排列彈三輪', to: 'backing/n-1' },
+        { id: 'w7-song7', text: '基本功・七和弦進行 vi–ii–V–I：每 2 輪換調，彈完 6 個調、每張 2 拍', to: 'drills/song7' },
       ],
     },
     {
@@ -500,7 +539,7 @@ export const KEY_LAB = {
   ],
 
   routine: [
-    { min: 5, title: '暖手', text: '黑鍵測驗，或這週的調的順階和弦上行下行。', to: 'quiz/note-black' },
+    { min: 5, title: '暖手', text: '基本功的節拍閃卡：順階換算或七和弦，3 到 5 分鐘。', to: 'drills' },
     { min: 10, title: '新內容', text: '這週單元的譜例，開節拍器，彈得乾淨就好，不求快。', to: 'plan' },
     { min: 10, title: '放進音樂', text: '挑一段配樂：第一輪柱式、第二輪分解、第三輪只彈右手。', to: 'backing' },
     { min: 5, title: '自由彈', text: '開 Drone，不看譜，用這週學的手型隨便彈。', to: 'drone' },
